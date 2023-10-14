@@ -1,21 +1,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    // User input variables
+    @StateObject var userState = UserState()
+
+    //username variable
     @State private var username = ""
+    //password variable
     @State private var password = ""
-
-    // Error flags for indicating wrong username or password
+    //wrong
     @State private var wrongUsername = false
+    //wrong password
     @State private var wrongPassword = false
-
-    // Flag to control navigation to the logged-in view
     @State private var showingLoginScreen = false
 
     var body: some View {
         NavigationView {
             ZStack {
-                // Background circles
                 Color.blue.ignoresSafeArea()
                 Circle()
                     .scale(1.7)
@@ -23,15 +23,12 @@ struct ContentView: View {
                 Circle()
                     .scale(1.35)
                     .foregroundColor(.white)
-
                 VStack {
-                    // Login title
                     Text("Login")
                         .font(.largeTitle)
                         .bold()
                         .padding()
 
-                    // Username input field
                     TextField("Username", text: $username)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
@@ -40,7 +37,6 @@ struct ContentView: View {
                                 .stroke(wrongUsername ? Color.red : Color.clear, lineWidth: 2)
                         )
 
-                    // Password input field
                     SecureField("Password", text: $password)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
@@ -49,7 +45,6 @@ struct ContentView: View {
                                 .stroke(wrongPassword ? Color.red : Color.clear, lineWidth: 2)
                         )
 
-                    // Login button
                     Button("Login") {
                         authenticateUser(username: username, password: password)
                     }
@@ -58,9 +53,8 @@ struct ContentView: View {
                     .background(Color.blue)
                     .cornerRadius(10)
 
-                    // Navigation link to the logged-in view
                     NavigationLink(
-                        destination: Text("This is the logged-in view @\(username)"),
+                        destination: UserProfileView().environmentObject(userState),
                         isActive: $showingLoginScreen,
                         label: { EmptyView() }
                     )
@@ -70,12 +64,13 @@ struct ContentView: View {
         }
     }
 
-    // Function to authenticate the user
     func authenticateUser(username: String, password: String) {
         if username.lowercased() == "test" {
             wrongUsername = false
             if password.lowercased() == "test" {
                 wrongPassword = false
+                userState.isLoggedIn = true
+                userState.username = username
                 showingLoginScreen = true
             } else {
                 wrongPassword = true

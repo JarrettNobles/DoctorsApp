@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
+
+class UserState: ObservableObject {
+    @Published var isLoggedIn = false
+    @Published var username = ""
+}
+
