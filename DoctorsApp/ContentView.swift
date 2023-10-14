@@ -53,6 +53,7 @@ struct ContentView: View {
                     .background(Color.blue)
                     .cornerRadius(10)
 
+                    //not sure how to fix deprecated warning?
                     NavigationLink(
                         destination: UserProfileView().environmentObject(userState),
                         isActive: $showingLoginScreen,
