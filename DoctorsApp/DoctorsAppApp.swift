@@ -1,11 +1,5 @@
-//
-//  DoctorsAppApp.swift
-//  DoctorsApp
-//
-//  Created by jarrett nobles on 10/14/23.
-//
+//main app
 import SwiftUI
-
 @main
 struct DoctorsAppApp: App {
     @StateObject var userState = UserState()
@@ -17,4 +11,5 @@ struct DoctorsAppApp: App {
         }
     }
 }
+
 
