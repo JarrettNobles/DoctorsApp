@@ -19,6 +19,9 @@ struct ContentView: View {
     // Flag to control navigation to the user profile screen
     @State private var showingLoginScreen = false
 
+    // Flag to control the presentation of the CreateAccountView modal
+    @State private var isCreateAccountPresented = false
+
     var body: some View {
         NavigationView {
             // ZStack for layered UI elements
@@ -76,16 +79,19 @@ struct ContentView: View {
                         label: { EmptyView() }
                     )
 
-                    // Navigation link to the account creation screen
-                    NavigationLink(destination: CreateAccountView()) {
-                        Text("Create an Account")
-                            .foregroundColor(.blue)
-                            .padding()
+                    // Button to present CreateAccountView as a modal
+                    Button("Create an Account") {
+                        isCreateAccountPresented.toggle()
                     }
-                    .padding(.top, 20) // Add padding to separate the links
+                    .foregroundColor(.blue)
+                    .padding()
                 }
             }
             .navigationBarHidden(true) // Hide the navigation bar
+            // Use .sheet to present CreateAccountView as a modal
+            .sheet(isPresented: $isCreateAccountPresented) {
+                CreateAccountView()
+            }
         }
     }
 

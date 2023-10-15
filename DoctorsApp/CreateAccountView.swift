@@ -4,6 +4,8 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
 
+import SwiftUI
+
 struct CreateAccountView: View {
     // State variables to store new account information
     @State private var newUsername = ""
@@ -14,87 +16,94 @@ struct CreateAccountView: View {
     @State private var wrongNewUsername = false
     @State private var wrongNewPassword = false
 
-    // Flag to control the presentation of the modal sheet
-    @State private var isModalPresented = false
+    // Flag to control the navigation
+    @State private var isNavigatingToLogin = false
 
     var body: some View {
-        // ZStack for layered UI elements
-        ZStack {
-            // Background color filling the safe area
-            Color.blue.ignoresSafeArea()
+        NavigationView {
+            // ZStack for layered UI elements
+            ZStack {
+                // Background color filling the safe area
+                Color.blue.ignoresSafeArea()
 
-            // Two concentric circles for decorative effect
-            Circle()
-                .scale(1.7)
-                .foregroundColor(.white.opacity(0.15))
-            Circle()
-                .scale(1.35)
-                .foregroundColor(.white)
+                // Two concentric circles for decorative effect
+                Circle()
+                    .scale(1.7)
+                    .foregroundColor(.white.opacity(0.15))
+                Circle()
+                    .scale(1.35)
+                    .foregroundColor(.white)
 
-            // VStack to arrange UI elements vertically
-            VStack {
-                // Spacer to push content to the top
-                Spacer()
+                // VStack to arrange UI elements vertically
+                VStack {
+                    // Spacer to push content to the top
+                    Spacer()
 
-                // Title of the screen
-                Text("Create an Account")
-                    .font(.largeTitle)
-                    .bold()
-                    .padding()
+                    // Title of the screen
+                    Text("Create an Account")
+                        .font(.largeTitle)
+                        .bold()
+                        .padding()
 
-                // Text field for entering the new username
-                TextField("Username", text: $newUsername)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(wrongNewUsername ? Color.red : Color.clear, lineWidth: 2)
-                    )
+                    // Text field for entering the new username
+                    TextField("Username", text: $newUsername)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(wrongNewUsername ? Color.red : Color.clear, lineWidth: 2)
+                        )
 
-                // Secure text field for entering the new password
-                SecureField("Password", text: $newPassword)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(wrongNewPassword ? Color.red : Color.clear, lineWidth: 2)
-                    )
+                    // Secure text field for entering the new password
+                    SecureField("Password", text: $newPassword)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(wrongNewPassword ? Color.red : Color.clear, lineWidth: 2)
+                        )
 
-                // Secure text field for confirming the new password
-                SecureField("Confirm Password", text: $confirmPassword)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
+                    // Secure text field for confirming the new password
+                    SecureField("Confirm Password", text: $confirmPassword)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
 
-                // Button to trigger the creation of the new account
-                Button("Create Account") {
-                    // Add logic to create the new account
-                    createAccount(username: newUsername, password: newPassword)
-                    // Set the state to present the modal sheet
-                    isModalPresented = true
-                }
-                .foregroundColor(.white)
-                .frame(width: 300, height: 50)
-                .background(Color.blue)
-                .cornerRadius(10)
-
-                // Text to prompt users to log in if they already have an account
-                Text("Already have an account? Log in.")
-                    .foregroundColor(.blue)
-                    .onTapGesture {
-                        // Set the state to present the modal sheet
-                        isModalPresented = true
+                    // Button to trigger the creation of the new account
+                    Button("Create Account") {
+                        // Add logic to create the new account
+                        createAccount(username: newUsername, password: newPassword)
+                        // Set the state to navigate to login
+                        isNavigatingToLogin = true
                     }
+                    .foregroundColor(.white)
+                    .frame(width: 300, height: 50)
+                    .background(Color.blue)
+                    .cornerRadius(10)
 
-                // Spacer to push content to the bottom
-                Spacer()
+                    // Text to prompt users to log in if they already have an account
+                    Text("Already have an account? Log in.")
+                        .foregroundColor(.blue)
+                        .onTapGesture {
+                            // Set the state to navigate to login
+                            isNavigatingToLogin = true
+                        }
+
+                    // Spacer to push content to the bottom
+                    Spacer()
+                }
             }
+            // Navigation link to navigate to ContentView
+            .background(
+                NavigationLink(
+                    destination: ContentView(),
+                    isActive: $isNavigatingToLogin,
+                    label: { EmptyView() }
+                )
+            )
+            // Remove any padding
+            .padding(0)
         }
-        // Modal sheet to navigate to ContentView
-        .sheet(isPresented: $isModalPresented) {
-            ContentView()
-        }
-        // Remove any padding
-        .padding(0)
+        .navigationBarHidden(true)
     }
 
     // Function to create a new account based on entered credentials
