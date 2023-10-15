@@ -9,7 +9,7 @@ import Firebase
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
-import SwiftUI
+
 
 struct CreateAccountView: View {
     @State private var newUsername = ""
@@ -18,6 +18,8 @@ struct CreateAccountView: View {
 
     @State private var wrongNewUsername = false
     @State private var wrongNewPassword = false
+
+    @State private var navigateToContentView = false
 
     var body: some View {
         NavigationView {
@@ -58,30 +60,41 @@ struct CreateAccountView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
 
-                    NavigationLink(destination: ContentView()) {
-                        Text("Create Account")
-                            .foregroundColor(.white)
-                            .frame(width: 300, height: 50)
-                            .background(Color.blue)
-                            .cornerRadius(10)
-                            .padding(.bottom, 20)
+                    Button("Create Account") {
+                        // Add logic to create the new account
+                        createAccount(username: newUsername, password: newPassword)
+                        // Set the state to navigate to ContentView
+                        navigateToContentView = true
                     }
+                    .foregroundColor(.white)
+                    .frame(width: 300, height: 50)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+
+                    Text("Already have an account? Log in.")
+                        .foregroundColor(.blue)
+                        .onTapGesture {
+                            // Set the state to navigate to ContentView
+                            navigateToContentView = true
+                        }
 
                     Spacer()
                 }
             }
             .navigationBarHidden(true)
+            .fullScreenCover(isPresented: $navigateToContentView) {
+                ContentView()
+            }
+            .padding(0)
         }
-        .padding(0)
+    }
+
+    func createAccount(username: String, password: String) {
+        // Add logic to create the new account
+        // You can use Firebase Authentication methods here
+        // (e.g., Auth.auth().createUser(withEmail:password:completion:))
     }
 }
-func createAccount(username: String, password: String) {
-       // Add logic to create the new account
-       // You can use Firebase Authentication methods here
-       // (e.g., Auth.auth().createUser(withEmail:password:completion:))
-   }
-
-
 
 struct CreateAccountView_Previews: PreviewProvider {
     static var previews: some View {
