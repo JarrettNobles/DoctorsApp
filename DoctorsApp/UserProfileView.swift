@@ -19,6 +19,7 @@ struct UserProfileView: View {
 
             VStack(alignment: .center, spacing: 0) {
                 // Display the profile picture (replace "placeholder" with the actual image)
+                //change to work from database
                 Image("ProfilePictures/jarrett.jpg")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
