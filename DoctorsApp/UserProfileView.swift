@@ -5,6 +5,11 @@
 //  Created by jarrett nobles on 10/14/23.
 //
 import SwiftUI
+import Firebase
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
+
 
 struct UserProfileView: View {
     // Access the UserState as an environment object

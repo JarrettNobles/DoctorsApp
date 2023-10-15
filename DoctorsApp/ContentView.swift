@@ -1,15 +1,15 @@
 import SwiftUI
+import Firebase
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
 
 struct ContentView: View {
     @StateObject var userState = UserState()
 
-    //username variable
     @State private var username = ""
-    //password variable
     @State private var password = ""
-    //wrong
     @State private var wrongUsername = false
-    //wrong password
     @State private var wrongPassword = false
     @State private var showingLoginScreen = false
 
@@ -53,12 +53,19 @@ struct ContentView: View {
                     .background(Color.blue)
                     .cornerRadius(10)
 
-                    //not sure how to fix deprecated warning?
                     NavigationLink(
                         destination: UserProfileView().environmentObject(userState),
                         isActive: $showingLoginScreen,
                         label: { EmptyView() }
                     )
+
+                    // New NavigationLink for creating an account
+                    NavigationLink(destination: CreateAccountView()) {
+                        Text("Create an Account")
+                            .foregroundColor(.blue)
+                            .padding()
+                    }
+                    .padding(.top, 20) // Add padding to separate the links
                 }
             }
             .navigationBarHidden(true)
