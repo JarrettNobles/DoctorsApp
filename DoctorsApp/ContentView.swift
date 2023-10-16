@@ -104,7 +104,7 @@ struct ContentView: View {
                     print("Login error: \(error.localizedDescription)")
                     self.wrongEmail = true
                     self.wrongPassword = true
-                } else if let user = result?.user {
+                } else if (result?.user) != nil {
                     // Authentication successful
                     self.wrongEmail = false
                     self.wrongPassword = false
