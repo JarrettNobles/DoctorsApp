@@ -79,6 +79,7 @@ struct ContentView: View {
             }
         }
     }
+
     
     func authenticateUser(authEmail: String, authPassword: String) {
         Auth.auth().signIn(withEmail: authEmail, password: authPassword) { result, error in
@@ -105,11 +106,11 @@ struct ContentView: View {
             }
         }
     }
-
+}
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
             ContentView()
                 .environmentObject(UserState()) // Provide a default UserState instance
         }
     }
-}
+
