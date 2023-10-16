@@ -7,7 +7,7 @@ import FirebaseAuth
 
 struct UserProfileView: View {
     // Access the UserState as an environment object
-    @EnvironmentObject var userState: UserState
+    @EnvironmentObject var userState: uuserState
 
     var body: some View {
         ZStack(alignment: .top) {

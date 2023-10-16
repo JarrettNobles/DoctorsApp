@@ -4,8 +4,6 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
 
-import SwiftUI
-
 struct CreateAccountView: View {
     // State variables to store new account information
     @State private var newUsername = ""
@@ -108,9 +106,21 @@ struct CreateAccountView: View {
 
     // Function to create a new account based on entered credentials
     func createAccount(username: String, password: String) {
-        // Add logic to create the new account
-        // You can use Firebase Authentication methods here
-        // (e.g., Auth.auth().createUser(withEmail:password:completion:))
+        Auth.auth().createUser(withEmail: username, password: password) { authResult, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    // Handle the error
+                    print("Create account error: \(error.localizedDescription)")
+                    wrongNewUsername = true
+                    wrongNewPassword = true
+                } else {
+                    // Account creation successful
+                    print("Account created successfully")
+                    wrongNewUsername = false
+                    wrongNewPassword = false
+                }
+            }
+        }
     }
 }
 

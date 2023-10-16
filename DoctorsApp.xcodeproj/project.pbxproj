@@ -15,7 +15,6 @@
 		674C5AAF2ADAF03D009CD157 /* DoctorsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674C5AAE2ADAF03D009CD157 /* DoctorsAppUITests.swift */; };
 		674C5AB12ADAF03E009CD157 /* DoctorsAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674C5AB02ADAF03E009CD157 /* DoctorsAppUITestsLaunchTests.swift */; };
 		674C5ABE2ADAFE45009CD157 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674C5ABD2ADAFE45009CD157 /* UserProfileView.swift */; };
-		674C5AC02ADAFEA0009CD157 /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674C5ABF2ADAFEA0009CD157 /* UserState.swift */; };
 		674C5AC22ADB1F75009CD157 /* MedicationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674C5AC12ADB1F75009CD157 /* MedicationListView.swift */; };
 		674C5AC42ADB202E009CD157 /* MedicalConditionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674C5AC32ADB202E009CD157 /* MedicalConditionListView.swift */; };
 		674C5AC62ADC3B52009CD157 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 674C5AC52ADC3B52009CD157 /* GoogleService-Info.plist */; };
@@ -47,6 +46,7 @@
 		674C5AFB2ADC3C48009CD157 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 674C5AFA2ADC3C48009CD157 /* FirebaseStorage */; };
 		674C5AFD2ADC3C48009CD157 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 674C5AFC2ADC3C48009CD157 /* FirebaseStorageCombine-Community */; };
 		674C5AFF2ADC3FE0009CD157 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674C5AFE2ADC3FE0009CD157 /* CreateAccountView.swift */; };
+		67715C492ADD9B2C00499E19 /* uuserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67715C482ADD9B2C00499E19 /* uuserState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,11 +78,11 @@
 		674C5AAE2ADAF03D009CD157 /* DoctorsAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsAppUITests.swift; sourceTree = "<group>"; };
 		674C5AB02ADAF03E009CD157 /* DoctorsAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		674C5ABD2ADAFE45009CD157 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
-		674C5ABF2ADAFEA0009CD157 /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 		674C5AC12ADB1F75009CD157 /* MedicationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationListView.swift; sourceTree = "<group>"; };
 		674C5AC32ADB202E009CD157 /* MedicalConditionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalConditionListView.swift; sourceTree = "<group>"; };
 		674C5AC52ADC3B52009CD157 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		674C5AFE2ADC3FE0009CD157 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
+		67715C482ADD9B2C00499E19 /* uuserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uuserState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,11 +160,11 @@
 		674C5A922ADAF03B009CD157 /* DoctorsApp */ = {
 			isa = PBXGroup;
 			children = (
+				67715C482ADD9B2C00499E19 /* uuserState.swift */,
 				674C5AC12ADB1F75009CD157 /* MedicationListView.swift */,
 				674C5A932ADAF03B009CD157 /* DoctorsAppApp.swift */,
 				674C5A952ADAF03B009CD157 /* ContentView.swift */,
 				674C5ABD2ADAFE45009CD157 /* UserProfileView.swift */,
-				674C5ABF2ADAFEA0009CD157 /* UserState.swift */,
 				674C5AC32ADB202E009CD157 /* MedicalConditionListView.swift */,
 				674C5AFE2ADC3FE0009CD157 /* CreateAccountView.swift */,
 				674C5AC52ADC3B52009CD157 /* GoogleService-Info.plist */,
@@ -364,9 +364,9 @@
 			files = (
 				674C5AC42ADB202E009CD157 /* MedicalConditionListView.swift in Sources */,
 				674C5A962ADAF03B009CD157 /* ContentView.swift in Sources */,
+				67715C492ADD9B2C00499E19 /* uuserState.swift in Sources */,
 				674C5ABE2ADAFE45009CD157 /* UserProfileView.swift in Sources */,
 				674C5AFF2ADC3FE0009CD157 /* CreateAccountView.swift in Sources */,
-				674C5AC02ADAFEA0009CD157 /* UserState.swift in Sources */,
 				674C5AC22ADB1F75009CD157 /* MedicationListView.swift in Sources */,
 				674C5A942ADAF03B009CD157 /* DoctorsAppApp.swift in Sources */,
 			);
