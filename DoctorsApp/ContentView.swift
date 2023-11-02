@@ -103,8 +103,9 @@ struct ContentView: View {
     //something in this function is causing the app to crash
     func authenticateUser(authEmail: String, authPassword: String) {
         // Use Firebase library to configure APIs
-        //test line
+        //test line to possibly fix the crashing
         FirebaseApp.configure()
+        
         Auth.auth().signIn(withEmail: authEmail, password: authPassword) { result, error in
             DispatchQueue.main.async {
                 if let error = error {
