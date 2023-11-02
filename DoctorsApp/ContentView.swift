@@ -3,11 +3,15 @@ import Firebase
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
+// Use Firebase library to configure APIs
 
 // ObservableObject to represent the state of the user in the app
 class UserState: ObservableObject {
     @Published var isLoggedIn = false
     @Published var email = ""
+    // Use Firebase library to configure APIs
+    
+
     // ... other properties
 }
 
@@ -98,6 +102,9 @@ struct ContentView: View {
     // Function to authenticate the user using Firebase
     //something in this function is causing the app to crash
     func authenticateUser(authEmail: String, authPassword: String) {
+        // Use Firebase library to configure APIs
+        //test line
+        FirebaseApp.configure()
         Auth.auth().signIn(withEmail: authEmail, password: authPassword) { result, error in
             DispatchQueue.main.async {
                 if let error = error {
