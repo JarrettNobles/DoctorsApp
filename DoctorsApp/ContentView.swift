@@ -96,6 +96,7 @@ struct ContentView: View {
     }
 
     // Function to authenticate the user using Firebase
+    //something in this function is causing the app to crash
     func authenticateUser(authEmail: String, authPassword: String) {
         Auth.auth().signIn(withEmail: authEmail, password: authPassword) { result, error in
             DispatchQueue.main.async {
