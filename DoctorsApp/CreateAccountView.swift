@@ -105,6 +105,7 @@ struct CreateAccountView: View {
     }
 
     // Function to create a new account based on entered credentials
+    //may possibly need to add the authentication line i added in the content view
     func createAccount(username: String, password: String) {
         Auth.auth().createUser(withEmail: username, password: password) { authResult, error in
             DispatchQueue.main.async {
