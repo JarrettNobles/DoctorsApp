@@ -91,6 +91,7 @@ struct CreateAccountView: View {
                 }
             }
             // Navigation link to navigate to ContentView
+            //getting a warning that was deprecated
             .background(
                 NavigationLink(
                     destination: ContentView(),
