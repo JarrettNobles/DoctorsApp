@@ -126,6 +126,7 @@ struct CreateAccountView: View {
     }
 }
 
+//this creates the app preview
 struct CreateAccountView_Previews: PreviewProvider {
     static var previews: some View {
         CreateAccountView()
